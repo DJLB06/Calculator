@@ -53,5 +53,78 @@ const decimalButton = document.querySelector('.decimal-button');
 const equalsButton = document.querySelector('.equals-button');
 const plusButton = document.querySelector('.plus-button');
 
+sevenButton.addEventListener('click', e =>{
+    displayBar.value = 7;
+});
+
+eightButton.addEventListener('click', e =>{
+    displayBar.value = 8;
+});
+
+nineButton.addEventListener('click', e =>{
+    displayBar.value = 9;
+});
+
+divideButton.addEventListener('click', e =>{
+    displayBar.value = '/';
+});
+
+fourButton.addEventListener('click', e =>{
+    displayBar.value = 4;
+});
+
+fiveButton.addEventListener('click', e =>{
+    displayBar.value = 5;
+});
+
+sixButton.addEventListener('click', e =>{
+    displayBar.value = 6;
+});
+
+multiplyButton.addEventListener('click', e =>{
+    displayBar.value = '*';
+});
+
+oneButton.addEventListener('click', e =>{
+    displayBar.value = 1;
+});
+
+twoButton.addEventListener('click', e =>{
+    displayBar.value = 2;
+});
+
+threeButton.addEventListener('click', e =>{
+    displayBar.value = 3;
+});
+
+minusButton.addEventListener('click', e =>{
+    displayBar.value = '-';
+});
+
+zeroButton.addEventListener('click', e =>{
+    displayBar.value = 7;
+});
+
+decimalButton.addEventListener('click', e =>{
+    displayBar.value = '.';
+});
+
+equalsButton.addEventListener('click', e =>{
+    displayBar.value = '=';
+});
+
+plusButton.addEventListener('click', e =>{
+    displayBar.value = '+';
+});
+
+
+
+
+
+
+
+
+
+
 
 
