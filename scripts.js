@@ -61,7 +61,7 @@ function assignValues(selectedValue){
         return;
     }
 
-    if(operatorSet.has(selectedValue)){
+    if(currentOperator == undefined && operatorSet.has(selectedValue)){
         currentOperator = selectedValue;
         return;
     }
@@ -75,6 +75,18 @@ function assignValues(selectedValue){
     if((valueOne != undefined) && (currentOperator != undefined) && (valueTwo == undefined)){
         valueTwo = selectedValue;
         displayBar.value = valueTwo;
+        return;
+    }
+
+    if((valueOne != undefined) && (currentOperator != undefined) && (valueTwo != undefined) && (operatorSet.has(selectedValue))){
+        console.log(valueOne);
+        console.log(valueTwo);
+        console.log(currentOperator);
+        let tempVal = operate(Number(valueOne), Number(valueTwo), currentOperator);
+        valueOne = tempVal;
+        displayBar.value = valueOne;
+        currentOperator = selectedValue;
+        valueTwo = undefined;
         return;
     }
 
@@ -109,7 +121,7 @@ const twoButton = document.querySelector('.two-button');
 const threeButton = document.querySelector('.three-button');
 const minusButton = document.querySelector('.minus-button');
 const zeroButton = document.querySelector('.zero-button');
-const decimalButton = document.querySelector('.decimal-button');
+const clearButton = document.querySelector('.clear-button');
 const equalsButton = document.querySelector('.equals-button');
 const plusButton = document.querySelector('.plus-button');
 
@@ -155,7 +167,6 @@ oneButton.addEventListener('click', e =>{
 });
 
 twoButton.addEventListener('click', e =>{
-    displayBar.value = 2;
     assignValues('2');
 });
 
@@ -172,8 +183,11 @@ zeroButton.addEventListener('click', e =>{
     assignValues('0');
 });
 
-decimalButton.addEventListener('click', e =>{
-    displayBar.value = '.';
+clearButton.addEventListener('click', e =>{
+    valueOne = undefined;
+    valueTwo = undefined;
+    currentOperator = undefined;
+    displayBar.value = '0';
 });
 
 equalsButton.addEventListener('click', e =>{

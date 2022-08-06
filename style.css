@@ -6,6 +6,44 @@
     max-height: 400px;
     min-height: 400px;
     gap: 5px;
+    
+}
+.body-container{
+    display: flex;
+    justify-content: center;
+}
+
+.calculator-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #D0D0D0;
+    padding: 20px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    margin: 50px;
+    border: black;
+    border-style: groove;
+    border-radius: 10px;
+   
+}
+
+#display-bar{
+    min-width: 350px;
+    max-width: 350px;
+    min-height: 30px;
+    margin-bottom: 5px;
+    border: black;
+    border-style: groove;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+button{
+    border: black;
+    border-style: groove;
+    border-radius: 10px;
 }
 
 
