@@ -1,7 +1,7 @@
 let valueOne;
 let valueTwo;
-let operator;
-
+const operatorSet = new Set(['+','-','/','*']);
+let currentOperator;
 
 function add(number1,number2){
     return number1 + number2;
@@ -40,28 +40,55 @@ function operate(number1,number2,operator){
 }
 
 function assignValues(selectedValue){
+   
     let finalValue;
+
+    if(valueOne == undefined && operatorSet.has(selectedValue)){
+        return;
+    }
+
+    if(selectedValue == '=' && (valueOne == undefined || currentOperator == undefined || valueTwo == undefined)){
+        displayBar.value = 'ERROR';
+        valueOne = undefined;
+        valueTwo = undefined;
+        currentOperator = undefined;
+        return;
+    }
 
     if(valueOne == undefined){
         valueOne = selectedValue;
-        console.log(valueOne);
+        displayBar.value = valueOne;
+        return;
     }
-    else if(operator == undefined){
-        operator = selectedValue;
-        console.log(operator);
+
+    if(operatorSet.has(selectedValue)){
+        currentOperator = selectedValue;
+        return;
     }
-    else if(valueTwo == undefined){
+
+    if((valueOne != undefined) && currentOperator == undefined){
+        valueOne = valueOne + selectedValue;
+        displayBar.value = valueOne;
+    }
+
+   
+    if((valueOne != undefined) && (currentOperator != undefined) && (valueTwo == undefined)){
         valueTwo = selectedValue;
-        console.log(valueTwo);
+        displayBar.value = valueTwo;
+        return;
     }
-    else if(selectedValue == '='){
-        finalValue = operate(valueOne,valueTwo,operator);
-        console.log(finalValue);
+
+    if((valueOne != undefined) && (currentOperator != undefined) && (valueTwo != undefined) && (selectedValue != '=')){
+        valueTwo = valueTwo + selectedValue;
+        displayBar.value = valueTwo;
+    }
+
+    if(selectedValue == '='){
+        finalValue = operate(Number(valueOne), Number(valueTwo), currentOperator);
         displayBar.value = finalValue;
         valueOne = undefined;
         valueTwo = undefined;
-        operator = undefined;
-        finalValue = undefined;
+        currentOperator = undefined;
     }
 
 }
@@ -87,18 +114,18 @@ const equalsButton = document.querySelector('.equals-button');
 const plusButton = document.querySelector('.plus-button');
 
 sevenButton.addEventListener('click', e =>{
-    displayBar.value = 7;
-    assignValues(7);
+    
+    assignValues('7');
 });
 
 eightButton.addEventListener('click', e =>{
-    displayBar.value = 8;
-    assignValues(8);
+   
+    assignValues('8');
 });
 
 nineButton.addEventListener('click', e =>{
-    displayBar.value = 9;
-    assignValues(9);
+   
+    assignValues('9');
 });
 
 divideButton.addEventListener('click', e =>{
@@ -107,18 +134,15 @@ divideButton.addEventListener('click', e =>{
 });
 
 fourButton.addEventListener('click', e =>{
-    displayBar.value = 4;
-    assignValues(4);
+    assignValues('4');
 });
 
 fiveButton.addEventListener('click', e =>{
-    displayBar.value = 5;
-    assignValues(5);
+    assignValues('5');
 });
 
 sixButton.addEventListener('click', e =>{
-    displayBar.value = 6;
-    assignValues(6);
+    assignValues('6');
 });
 
 multiplyButton.addEventListener('click', e =>{
@@ -127,18 +151,16 @@ multiplyButton.addEventListener('click', e =>{
 });
 
 oneButton.addEventListener('click', e =>{
-    displayBar.value = 1;
-    assignValues(1);
+    assignValues('1');
 });
 
 twoButton.addEventListener('click', e =>{
     displayBar.value = 2;
-    assignValues(2);
+    assignValues('2');
 });
 
 threeButton.addEventListener('click', e =>{
-    displayBar.value = 3;
-    assignValues(3);
+    assignValues('3');
 });
 
 minusButton.addEventListener('click', e =>{
@@ -147,8 +169,7 @@ minusButton.addEventListener('click', e =>{
 });
 
 zeroButton.addEventListener('click', e =>{
-    displayBar.value = 0;
-    assignValues(0);
+    assignValues('0');
 });
 
 decimalButton.addEventListener('click', e =>{
